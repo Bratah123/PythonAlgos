@@ -59,12 +59,26 @@ def selection_sort(my_array):
 
 
 def fizz_buzz():
-    pass
+    for i in range(1, 101):
+        # 1 -> 100
+        result = str(i)
+        if i % 3 == 0:
+            result = "Fizz"
+        if i % 5 == 0:
+            if i % 3 != 0:
+                result = "Buzz"
+            else:
+                result += "Buzz"
+        print(result)
 
-def fibonacci():
-    pass
+def fibonacci(n):
+    fib_array = []
+    a, b = 0, 1
+    for i in range(n):
+        a, b = b, b + a
+        fib_array.append(a)
+    return fib_array
 
 rand_list = [8, 8, 7, 5, 4, 3, 2, 4, 1]
 
-print("Unsorted:", rand_list)
-print("Sorted:", merge_sort(rand_list))
+print(fibonacci(12))
