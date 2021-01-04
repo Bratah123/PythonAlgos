@@ -21,7 +21,7 @@ def merge(first_array, second_array):
     merged_array = []
     first_index, second_index = 0, 0
 
-    while first_arr_size > first_index and second_arr_size > second_index:
+    while first_index < first_arr_size and second_index < second_arr_size:
         if first_array[first_index] < second_array[second_index]:
             merged_array.append(first_array[first_index])
             first_index += 1
@@ -33,6 +33,7 @@ def merge(first_array, second_array):
         merged_array.extend(second_array[second_index:])
     else:
         merged_array.extend(first_array[first_index:])
+
     return merged_array
 
 def merge_sort(my_array):
@@ -64,8 +65,6 @@ def fibonacci():
     pass
 
 rand_list = [8, 8, 7, 5, 4, 3, 2, 4, 1]
-merge_list = [1, 3, 5]
-merge_list2 = [2, 4, 6]
 
 print("Unsorted:", rand_list)
 print("Sorted:", merge_sort(rand_list))
