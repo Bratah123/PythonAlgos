@@ -79,6 +79,58 @@ def fibonacci(n):
         fib_array.append(a)
     return fib_array
 
+def two_sum(nums, target):
+    nums_length = len(nums)
+    cache_list = nums
+    for number in cache_list:
+        for i in range(cache_list.index(number) + 1, nums_length):
+            if number + nums[i] == target:
+                return [cache_list.index(number), i]
+
+def roman_to_int(s):
+    str_length = len(s)
+    num = 0
+    grouped_symbols = []
+    roman_symbols ={
+        'I': 1,
+        'V': 5,
+        'X': 10,
+        'L': 50,
+        'C': 100,
+        'D': 500,
+        'M': 1000,
+        'IV': 4,
+        'IX': 9,
+        'XL': 40,
+        'XC': 90,
+        'CD': 400,
+        'CM': 900,
+    }
+
+    if str_length == 1:
+        return roman_symbols[s]
+
+    index = 0
+    while index < str_length - 1:
+        current_symbol = s[index]
+        symbol_ahead = s[index+1]
+
+        if roman_symbols.get(current_symbol + symbol_ahead) is not None:
+            grouped_symbols.append(current_symbol + symbol_ahead)
+            index += 2
+        else:
+            grouped_symbols.append(current_symbol)
+            index += 1
+
+    for group in grouped_symbols:
+        num += roman_symbols[group]
+
+    if roman_symbols.get(s[-2:]) is None:
+        num += roman_symbols[s[-1]]
+
+    print(grouped_symbols)
+    return num
+
 rand_list = [8, 8, 7, 5, 4, 3, 2, 4, 1]
 
-print(fibonacci(12))
+print(roman_to_int('D'))
