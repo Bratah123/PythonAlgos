@@ -131,6 +131,19 @@ def roman_to_int(s):
     print(grouped_symbols)
     return num
 
+def contains_duplicates(nums):
+    numbers_encountered = {}
+    for number in nums:
+        if numbers_encountered.get(number) is None:
+            numbers_encountered[number] = 1
+        else:
+            numbers_encountered[number] += 1
+
+        if numbers_encountered.get(number) > 1:
+            return True
+
+    return False
+
 rand_list = [8, 8, 7, 5, 4, 3, 2, 4, 1]
 
 print(roman_to_int('D'))
