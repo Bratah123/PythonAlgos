@@ -144,6 +144,23 @@ def contains_duplicates(nums):
 
     return False
 
+def duplicate_zeros(self, arr: List[int]) -> None:
+    """
+    Do not return anything, modify arr in-place instead.
+    """
+    arr_length = len(arr)
+    index = 0
+    while index < arr_length:
+        if arr[index] == 0:
+            arr.insert(index + 1, 0)
+            index += 1
+        index += 1
+
+    items_to_remove = len(arr) - arr_length
+
+    for i in range(items_to_remove):
+        del arr[-1]
+
 rand_list = [8, 8, 7, 5, 4, 3, 2, 4, 1]
 
 print(roman_to_int('D'))
