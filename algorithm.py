@@ -144,7 +144,7 @@ def contains_duplicates(nums):
 
     return False
 
-def duplicate_zeros(self, arr: List[int]) -> None:
+def duplicate_zeros(self, arr):
     """
     Do not return anything, modify arr in-place instead.
     """
@@ -161,6 +161,49 @@ def duplicate_zeros(self, arr: List[int]) -> None:
     for i in range(items_to_remove):
         del arr[-1]
 
-rand_list = [8, 8, 7, 5, 4, 3, 2, 4, 1]
+class Node:
+    """Representing a node in a binary tree
 
-print(roman_to_int('D'))
+    """
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
+
+class BinaryTree:
+    """Representing a Binary Tree
+
+    """
+    def __init__(self, root):
+        self.root = Node(root)
+
+    def print_preorder(self, start_root, traverse):
+        if start_root:
+            traverse += str(start_root.value) + ", "
+            traverse = self.print_preorder(start_root.left, traverse)
+            traverse = self.print_preorder(start_root.right, traverse)
+        return traverse
+
+    def print_inorder(self, start_root, traverse):
+        if start_root is not None:
+            traverse = self.print_inorder(start_root.left, traverse)
+            traverse += str(start_root.value) + ", "
+            traverse = self.print_inorder(start_root.right, traverse)
+        return traverse
+
+# Initializing Tree
+#       2
+#     /  \
+#   4     3
+#  / \   / \
+# 5   6 7  8
+tree = BinaryTree(2)
+tree.root.left = Node(4)
+tree.root.right = Node(3)
+tree.root.left.left = Node(5)
+tree.root.left.right = Node(6)
+tree.root.right.left = Node(7)
+tree.root.right.right = Node(8)
+
+print("Print preorder:", tree.print_preorder(tree.root, ""))
+print("Print inorder:", tree.print_inorder(tree.root, ""))
