@@ -191,6 +191,43 @@ class BinaryTree:
             traverse = self.print_inorder(start_root.right, traverse)
         return traverse
 
+    def preorder_list(self, start_root, nodes):
+        if start_root:
+            # Counting from root->Left->root->Right (preorder)
+            nodes.append(start_root.value)
+            nodes = self.preorder_list(start_root.left, nodes)
+            nodes = self.preorder_list(start_root.right, nodes)
+        return nodes
+
+    def count_nodes(self, start_root, count):
+        # Counting size of nodes recursively
+        if start_root:
+            count = self.count_nodes(start_root.left, count + 1)
+            count = self.count_nodes(start_root.right, count)
+        return count
+
+    def get_size(self, node):
+        # getting the size of the node iteratively
+        if node is None:
+            return 0
+        stack = []
+        stack.append(node)
+        size = 1
+        while len(stack) > 0:
+            node = stack.pop()
+            if node.left:
+                size += 1
+                stack.append(node.left)
+            elif node.right:
+                size += 1
+                stack.append(node.right)
+        return size
+
+    def size(self):
+        # brute force method, more efficient/faster?
+        return self.count_nodes(self.root, 0)
+
+
 # Initializing Tree
 #       2
 #     /  \
@@ -207,3 +244,5 @@ tree.root.right.right = Node(8)
 
 print("Print preorder:", tree.print_preorder(tree.root, ""))
 print("Print inorder:", tree.print_inorder(tree.root, ""))
+print("Binary Tree Size Recursively:", tree.size())
+print("Binary Tree Size Iteratively:", tree.get_size(tree.root))
