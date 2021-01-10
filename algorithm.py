@@ -241,6 +241,15 @@ class BinaryTree:
         # brute force method, more efficient/faster?
         return self.count_nodes(self.root, 0)
 
+    def invert(self, root):
+        if root:
+            left = root.left
+            right = root.right
+            root.right = left
+            root.left = right
+            self.invert(root.left)
+            self.invert(root.right)
+
 # Arithmetic progression
 # Given n numbers return the result of 1 + 2 + 3 + ..... + n
 def add_n_with_iter(n):
