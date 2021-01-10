@@ -191,6 +191,20 @@ class BinaryTree:
             traverse = self.print_inorder(start_root.right, traverse)
         return traverse
 
+    def inorder_iteratively(self):
+        stack = []
+        node = self.root
+        while True:
+            if node is not None:
+                stack.append(node)
+                node = node.left
+            elif stack:
+                node = stack.pop()
+                print(node.value)
+                node = node.right
+            else:
+                break
+
     def preorder_list(self, start_root, nodes):
         if start_root:
             # Counting from root->Left->root->Right (preorder)
@@ -253,11 +267,12 @@ def add_n_with_recursion(n):
 tree = BinaryTree(1)
 tree.root.left = Node(2)
 tree.root.right = Node(2)
-tree.root.left.left = Node(None)
-tree.root.left.right = Node(3)
-tree.root.right.left = Node(None)
+tree.root.left.left = Node(3)
+tree.root.left.right = Node(4)
+tree.root.right.left = Node(4)
 tree.root.right.right = Node(3)
 
 print(add_n_with_iter(5))
 print(add_n_with_math(5))
 print(add_n_with_recursion(5))
+print(tree.inorder_iteratively())
