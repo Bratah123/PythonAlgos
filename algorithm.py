@@ -227,22 +227,37 @@ class BinaryTree:
         # brute force method, more efficient/faster?
         return self.count_nodes(self.root, 0)
 
+# Arithmetic progression
+# Given n numbers return the result of 1 + 2 + 3 + ..... + n
+def add_n_with_iter(n):
+    result = 0
+    for i in range(n + 1):
+        result += i
+    return result
+
+def add_n_with_math(n):
+    return (n*(n+1)) / 2
+
+def add_n_with_recursion(n):
+    # Base case
+    if n <= 0:
+        return n
+    return n + add_n_with_recursion(n - 1)
 
 # Initializing Tree
-#       2
+#       1
 #     /  \
-#   4     3
+#   2     2
 #  / \   / \
-# 5   6 7  8
-tree = BinaryTree(2)
-tree.root.left = Node(4)
-tree.root.right = Node(3)
-tree.root.left.left = Node(5)
-tree.root.left.right = Node(6)
-tree.root.right.left = Node(7)
-tree.root.right.right = Node(8)
+# 3   4 4  3
+tree = BinaryTree(1)
+tree.root.left = Node(2)
+tree.root.right = Node(2)
+tree.root.left.left = Node(None)
+tree.root.left.right = Node(3)
+tree.root.right.left = Node(None)
+tree.root.right.right = Node(3)
 
-print("Print preorder:", tree.print_preorder(tree.root, ""))
-print("Print inorder:", tree.print_inorder(tree.root, ""))
-print("Binary Tree Size Recursively:", tree.size())
-print("Binary Tree Size Iteratively:", tree.get_size(tree.root))
+print(add_n_with_iter(5))
+print(add_n_with_math(5))
+print(add_n_with_recursion(5))
